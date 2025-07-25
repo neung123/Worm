@@ -41,3 +41,24 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Background
+    uniqueID: 3491513941
+    locked: 0
+  - name: BackgroundVFX
+    uniqueID: 731136075
+    locked: 0
+  - name: BackgroundDecorate
+    uniqueID: 223986481
+    locked: 0
+  - name: MidgroundDecorate
+    uniqueID: 1188956105
+    locked: 0
+  - name: GameplayObject
+    uniqueID: 1509621323
+    locked: 0
+  - name: ForegroundVFX
+    uniqueID: 2013137275
+    locked: 0
+  - name: ForeGroundDecorate
+    uniqueID: 671206765
+    locked: 0
