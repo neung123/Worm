@@ -1,0 +1,86 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &6131312641309030098
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4026277663792140055}
+  - component: {fileID: 1581474450542016072}
+  m_Layer: 0
+  m_Name: ParallaxDecoration
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4026277663792140055
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6131312641309030098}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1581474450542016072
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6131312641309030098}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e60f18dd3ecccbd4fb425185f638ca15, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prefabList:
+  - {fileID: 3639226657993864942, guid: 16a06ed9414d58c469410b351f4f7393, type: 3}
+  - {fileID: 7928993350909589264, guid: 27390572feb967a4b922f51f82fac564, type: 3}
+  - {fileID: 3844997284254057707, guid: 8c938774e52fb274783728852bf55570, type: 3}
+  - {fileID: 5712144802079973939, guid: 1f76936b5ec13a24a937a3d2b3a7230c, type: 3}
+  - {fileID: 7928993350909589264, guid: a4ec056a998b7544db25019316eb06cb, type: 3}
+  - {fileID: 6437350999784239108, guid: 551a170ac3193d6478a0e74478147eb8, type: 3}
+  leftBoundMin: -10
+  leftBoundMax: -10
+  rightBoundMin: 10
+  rightBoundMax: 10
+  baseScrollSpeed: 1
+  bottomY: -10
+  topY: 20
+  layerSettingsList:
+  - layer: 0
+    scaleRangeMin: 0.2
+    scaleRangeMax: 0.3
+    sortingLayer: BackgroundDecorate
+    spawnCooldownMin: 2
+    spawnCooldownMax: 6
+  - layer: 1
+    scaleRangeMin: 0.4
+    scaleRangeMax: 0.6
+    sortingLayer: MidgroundDecorate
+    spawnCooldownMin: 1
+    spawnCooldownMax: 6
+  - layer: 2
+    scaleRangeMin: 1
+    scaleRangeMax: 1.2
+    sortingLayer: ForegroundDecorate
+    spawnCooldownMin: 10
+    spawnCooldownMax: 15
+  anchorWeights:
+  - anchor: 0
+    weight: 1
+  - anchor: 1
+    weight: 1
+  - anchor: 2
+    weight: 2
