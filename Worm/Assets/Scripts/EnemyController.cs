@@ -41,6 +41,11 @@ public class EnemyController : MonoBehaviour
 
     private void Update()
     {
+        if (!CoreGame.Instance.IsPlaying)
+        {
+            return;
+        }
+
         if (CoreGame.Instance.IsDead)
         {
             return;
@@ -52,6 +57,17 @@ public class EnemyController : MonoBehaviour
     public void SetEnemyEnum(EnemyEnum enemyEnum)
     {
         _enemyEnum = enemyEnum;
+    }
+
+    public void ClearAllSpawnedEnemy()
+    {
+        foreach (Enemy enemy in _currentEnemy)
+        {
+            if (_pools.TryGetValue(name, out var pool))
+            {
+                pool.ReturnEnemy(enemy);
+            }
+        }
     }
 
     private void ElapsedSpawnTime()
@@ -107,7 +123,7 @@ public class EnemyController : MonoBehaviour
             spawnedEnemy = newPool.GetEnemy();
         }
 
-        spawnedEnemy.transform.parent = transform;  
+        spawnedEnemy.transform.parent = transform;
 
         _currentEnemy.Add(spawnedEnemy);
 

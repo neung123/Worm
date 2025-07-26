@@ -34,7 +34,6 @@ public class Player : MonoBehaviour
 
     private const float _lerpThreshold = 0.3f;
 
-    private GameInputAction _gameInputAction;
     private bool _isHolding;
     private Vector2 _movement;
     private Tween _tween;
@@ -44,14 +43,19 @@ public class Player : MonoBehaviour
 
     private void Start()
     {
-        _gameInputAction = new GameInputAction();
-        _gameInputAction.Gameplay.Enable();
-        _gameInputAction.Gameplay.Movement.performed += PerformMovement;
-        _gameInputAction.Gameplay.Movement.canceled += CancelMovement;
+        GameInputAction inputActions = CoreGame.Instance.GameInputAction;
+
+        inputActions.Gameplay.Movement.performed += PerformMovement;
+        inputActions.Gameplay.Movement.canceled += CancelMovement;
     }
 
     private void Update()
     {
+        if (!CoreGame.Instance.IsPlaying)
+        {
+            return;
+        }
+
         if (CoreGame.Instance.IsDead)
         {
             return;
@@ -79,15 +83,6 @@ public class Player : MonoBehaviour
             StartPendulum();
         }
     }
-    private void OnEnable()
-    {
-        _gameInputAction?.Gameplay.Enable();
-    }
-
-    private void OnDisable()
-    {
-        _gameInputAction.Gameplay.Disable();
-    }
 
     private void OnTriggerEnter(Collider other)
     {
@@ -96,6 +91,11 @@ public class Player : MonoBehaviour
             _isDead = true;
             WhenPlayerDead?.Invoke();
         }
+    }
+
+    public void ResetPosition()
+    {
+        _holder.eulerAngles = Vector3.zero;
     }
 
     private void PerformMovement(InputAction.CallbackContext context)

@@ -25,8 +25,10 @@ public class CoreGame : MonoBehaviour
 
     public static CoreGame Instance;
 
+    public bool IsPlaying { get; private set; }
     public bool IsDead { get; private set; }
     public float GameplayProgress => Mathf.Clamp01(_elapsedGameTime / _gameplayDuration);
+    public GameInputAction GameInputAction;
 
     private float _elapsedGameTime;
 
@@ -34,18 +36,43 @@ public class CoreGame : MonoBehaviour
     {
         Instance = this;
 
-        Player.WhenPlayerDead += OnPlayerDead;
+        GameInputAction = new GameInputAction();
     }
 
     private void Update()
     {
+        if (!IsPlaying)
+        {
+            return;
+        }
+
         if (IsDead)
         {
-            UIController.Lose();
             return;
         }
 
         ElapsedGameTime();
+    }
+    private void OnEnable()
+    {
+        GameInputAction?.Gameplay.Enable();
+    }
+
+    private void OnDisable()
+    {
+        GameInputAction.Gameplay.Disable();
+    }
+
+    public void StartGame()
+    {
+        IsPlaying = true;
+        IsDead = false;
+        
+        _elapsedGameTime = 0;
+
+        Player.WhenPlayerDead += OnPlayerDead;
+        Player.ResetPosition();
+        GameInputAction.Gameplay.Enable();
     }
 
     private void ElapsedGameTime()
@@ -80,6 +107,14 @@ public class CoreGame : MonoBehaviour
 
     private void OnPlayerDead()
     {
+        Player.WhenPlayerDead -= OnPlayerDead;
+
         IsDead = true;
+        IsPlaying = false;
+
+        GameInputAction.Gameplay.Disable();
+        EnemyController.ClearAllSpawnedEnemy();
+
+        UIController.Lose();
     }
 }
