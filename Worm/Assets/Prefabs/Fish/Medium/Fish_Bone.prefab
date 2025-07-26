@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2709196111392576773}
   - component: {fileID: 1067082739963340303}
-  - component: {fileID: 553981227490028327}
+  - component: {fileID: -3117366735508307539}
   m_Layer: 0
   m_Name: Fish_Bone
   m_TagString: Untagged
@@ -71,8 +71,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1509621323
+  m_SortingLayer: 5
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 2dc9b79f7b6fc6a44b22f007d1d9ebcb, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -85,17 +85,24 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &553981227490028327
-MonoBehaviour:
+--- !u!65 &-3117366735508307539
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1175176209981013625}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
   m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 53b165aa410d3cc45b041c19b99b2270, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _minSpeed: 0
-  _maxSpeed: 0
+  serializedVersion: 3
+  m_Size: {x: 1.2541704, y: 1.486356, z: 0.2}
+  m_Center: {x: 1.6579151, y: -0.13182196, z: 0}
