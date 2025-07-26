@@ -47,7 +47,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5dd51bdffc4b6b54b9c906796e15ce77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <Player>k__BackingField: {fileID: 3812928477928333582}
+  <Player>k__BackingField: {fileID: 3177827090794133508}
   <UIController>k__BackingField: {fileID: 6629564296819406715}
   <EnemyController>k__BackingField: {fileID: 2141798691054763023}
   _gameplayDuration: 30
@@ -140,7 +140,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3513833167410240040, guid: abc8f42eb09fec0489fe530e500dca30, type: 3}
       propertyPath: m_Name
-      value: Player
+      value: PlayerHolder
       objectReference: {fileID: 0}
     - target: {fileID: 8657857862731809917, guid: abc8f42eb09fec0489fe530e500dca30, type: 3}
       propertyPath: m_LocalPosition.x
@@ -187,9 +187,9 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: abc8f42eb09fec0489fe530e500dca30, type: 3}
---- !u!114 &3812928477928333582 stripped
+--- !u!114 &3177827090794133508 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8474402635690682262, guid: abc8f42eb09fec0489fe530e500dca30, type: 3}
+  m_CorrespondingSourceObject: {fileID: 7883822269661462172, guid: abc8f42eb09fec0489fe530e500dca30, type: 3}
   m_PrefabInstance: {fileID: 4715583766370289304}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
