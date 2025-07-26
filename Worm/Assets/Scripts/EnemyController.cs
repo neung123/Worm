@@ -3,9 +3,11 @@ using UnityEngine;
 
 public class EnemyController : MonoBehaviour
 {
-
     [SerializeField]
     private int _spawnDelayDuration;
+
+    [SerializeField]
+    private float _spawnChance = 1f;
 
     [SerializeField]
     private Vector2 _minLeftSpawnPoint;
@@ -83,6 +85,7 @@ public class EnemyController : MonoBehaviour
         {
             _elapsedSpawnTime = 0f;
 
+            bool shouldSpawn = Random.value < _spawnChance;
             SpawnEnemy();
         }
     }
@@ -141,7 +144,6 @@ public class EnemyController : MonoBehaviour
 
     private Vector3 GetRandomPosition(bool spawnLeft)
     {
-
         Vector2 minPoint = spawnLeft ? _minLeftSpawnPoint : _minRightSpawnPoint;
         Vector2 maxPoint = spawnLeft ? _maxLeftSpawnPoint : _maxRightSpawnPoint;
 
