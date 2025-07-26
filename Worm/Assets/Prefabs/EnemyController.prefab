@@ -44,16 +44,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd67e1fa27285d748b5c86c4badb5fa5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _spawnDelayDuration: 0
   _MaxSpawnPoint: {x: 0, y: 0}
   _easyEnemies:
-  - {fileID: 5692133384855512560, guid: 633fd4d4bd939e145be91556d6063e0b, type: 3}
-  - {fileID: -437606019109206980, guid: 11bd21accd20dab4ebdc4ca6e8a264a5, type: 3}
-  - {fileID: 2754396609299220905, guid: b4e6215cf42e42f4987f7c2b9e20e7cd, type: 3}
+  - {fileID: -4205641336311441855, guid: 633fd4d4bd939e145be91556d6063e0b, type: 3}
+  - {fileID: -1612340817866047356, guid: 11bd21accd20dab4ebdc4ca6e8a264a5, type: 3}
+  - {fileID: -4151793527697918024, guid: b4e6215cf42e42f4987f7c2b9e20e7cd, type: 3}
   _mediumEnemies:
-  - {fileID: 6427283665115415821, guid: 6eeeb6f9fbdd19f4c8c00fdc27eb3d4c, type: 3}
-  - {fileID: 553981227490028327, guid: 38aa7922fabd7294b83741466bf650c3, type: 3}
-  - {fileID: -6820546416255415080, guid: b53505a350f8d4042a2b8b471c4bbc6f, type: 3}
+  - {fileID: -3558875921236075946, guid: 6eeeb6f9fbdd19f4c8c00fdc27eb3d4c, type: 3}
+  - {fileID: 744548469081847780, guid: 38aa7922fabd7294b83741466bf650c3, type: 3}
+  - {fileID: 1661040866902846298, guid: b53505a350f8d4042a2b8b471c4bbc6f, type: 3}
   _hardEnemies:
-  - {fileID: 8774670009788257946, guid: ec21a97055d170a41bfae9b8784756b0, type: 3}
-  - {fileID: -2840730104440717836, guid: b422d0368af5606408d4b7fa9771b841, type: 3}
-  - {fileID: -3605271478887516005, guid: 353e6e7132dc83b47a0c0bd0587216cc, type: 3}
+  - {fileID: -8202199397025477664, guid: ec21a97055d170a41bfae9b8784756b0, type: 3}
+  - {fileID: -5748150053171631237, guid: b422d0368af5606408d4b7fa9771b841, type: 3}
+  - {fileID: -8757903315387315774, guid: 353e6e7132dc83b47a0c0bd0587216cc, type: 3}

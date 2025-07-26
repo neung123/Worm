@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4384982511223623507}
   - component: {fileID: 7128110585860623245}
   - component: {fileID: 178183563683404889}
+  - component: {fileID: -4151793527697918024}
   m_Layer: 0
   m_Name: Fish_Nemo
   m_TagString: Untagged
@@ -106,3 +107,17 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1.0218408, y: 1.2468485, z: 0.2}
   m_Center: {x: 0.77407944, y: 0.019352019, z: 0}
+--- !u!114 &-4151793527697918024
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4351651238166418021}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 53b165aa410d3cc45b041c19b99b2270, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _minSpeed: 0
+  _maxSpeed: 0

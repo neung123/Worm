@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 2565857101408427033}
   - component: {fileID: 9132286702997354174}
   - component: {fileID: 5203809291416853928}
+  - component: {fileID: -8757903315387315774}
   m_Layer: 0
   m_Name: Fish_Sun
   m_TagString: Untagged
@@ -106,3 +107,17 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1.6454958, y: 2.2985551, z: 0.2}
   m_Center: {x: 0.922252, y: -0.40009484, z: 0}
+--- !u!114 &-8757903315387315774
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1743715106365060242}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 53b165aa410d3cc45b041c19b99b2270, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _minSpeed: 0
+  _maxSpeed: 0
