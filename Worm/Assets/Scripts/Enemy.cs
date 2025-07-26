@@ -14,14 +14,14 @@ public class Enemy : MonoBehaviour
     private SpriteRenderer _spriteRenderer;
 
     public Action<Enemy> WhenCompletedSwim;
-    public bool IsSwiming;
-
+    
+    private bool _isSwiming;
     private bool _isSpawnLeft;
     private Tween _tween;
 
     public void StartSwim(Vector3 startPosition, Vector3 endPosition, bool isSpawnLeft)
     {
-        IsSwiming = true;
+        _isSwiming = true;
         gameObject.SetActive(true);
 
         transform.position = startPosition;
@@ -30,7 +30,7 @@ public class Enemy : MonoBehaviour
 
         var x = _isSpawnLeft ? transform.localScale.x : -transform.localScale.x;
         transform.localScale = new Vector3(x, transform.localScale.y, transform.localScale.z);
-        
+
         var duration = UnityEngine.Random.Range(_minSpeedDuration, _maxSpeedDuration);
 
         _tween = transform.DOMove(endPosition, duration).OnComplete(() => OnCompletedSwim());
@@ -38,7 +38,7 @@ public class Enemy : MonoBehaviour
 
     public void StopSwim()
     {
-        IsSwiming = false;
+        _isSwiming = false;
         gameObject.SetActive(false);
         _tween.Kill();
 
@@ -47,7 +47,7 @@ public class Enemy : MonoBehaviour
 
     private void OnCompletedSwim()
     {
-        IsSwiming = false;
+        _isSwiming = false;
         WhenCompletedSwim?.Invoke(this);
     }
 }

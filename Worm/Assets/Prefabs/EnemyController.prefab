@@ -44,7 +44,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd67e1fa27285d748b5c86c4badb5fa5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _spawnDelayDuration: 0
+  _spawnDelayDuration: 2
+  _spawnChance: 0.7
   _minLeftSpawnPoint: {x: -14, y: -6}
   _maxLeftSpawnPoint: {x: -14, y: 6}
   _minRightSpawnPoint: {x: 14, y: -6}

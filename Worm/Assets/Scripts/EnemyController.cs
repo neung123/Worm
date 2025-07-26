@@ -3,9 +3,11 @@ using UnityEngine;
 
 public class EnemyController : MonoBehaviour
 {
-
     [SerializeField]
     private int _spawnDelayDuration;
+
+    [SerializeField]
+    private float _spawnChance = 1f;
 
     [SerializeField]
     private Vector2 _minLeftSpawnPoint;
@@ -41,6 +43,11 @@ public class EnemyController : MonoBehaviour
 
     private void Update()
     {
+        if (!CoreGame.Instance.IsPlaying)
+        {
+            return;
+        }
+
         if (CoreGame.Instance.IsDead)
         {
             return;
@@ -54,6 +61,22 @@ public class EnemyController : MonoBehaviour
         _enemyEnum = enemyEnum;
     }
 
+    public void ClearAllSpawnedEnemy()
+    {
+        foreach (Enemy enemy in _currentEnemy)
+        {
+            string name = enemy.name.Replace("(Clone)", "");
+            enemy.StopSwim();
+
+            if (_pools.TryGetValue(name, out var pool))
+            {
+                pool.ReturnEnemy(enemy);
+            }
+        }
+
+        _currentEnemy.Clear();
+    }
+
     private void ElapsedSpawnTime()
     {
         _elapsedSpawnTime += Time.deltaTime;
@@ -62,6 +85,7 @@ public class EnemyController : MonoBehaviour
         {
             _elapsedSpawnTime = 0f;
 
+            bool shouldSpawn = Random.value < _spawnChance;
             SpawnEnemy();
         }
     }
@@ -107,7 +131,7 @@ public class EnemyController : MonoBehaviour
             spawnedEnemy = newPool.GetEnemy();
         }
 
-        spawnedEnemy.transform.parent = transform;  
+        spawnedEnemy.transform.parent = transform;
 
         _currentEnemy.Add(spawnedEnemy);
 
@@ -120,7 +144,6 @@ public class EnemyController : MonoBehaviour
 
     private Vector3 GetRandomPosition(bool spawnLeft)
     {
-
         Vector2 minPoint = spawnLeft ? _minLeftSpawnPoint : _minRightSpawnPoint;
         Vector2 maxPoint = spawnLeft ? _maxLeftSpawnPoint : _maxRightSpawnPoint;
 
@@ -142,5 +165,7 @@ public class EnemyController : MonoBehaviour
         {
             pool.ReturnEnemy(enemy);
         }
+
+        _currentEnemy.Remove(enemy);
     }
 }

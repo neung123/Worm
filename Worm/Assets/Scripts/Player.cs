@@ -10,6 +10,9 @@ public class Player : MonoBehaviour
     private Transform _holder;
 
     [SerializeField]
+    private Animator _animator;
+
+    [SerializeField]
     private int _maxRotate;
 
     [SerializeField]
@@ -34,7 +37,11 @@ public class Player : MonoBehaviour
 
     private const float _lerpThreshold = 0.3f;
 
-    private GameInputAction _gameInputAction;
+    // Animation triggers
+    private const string _animatorRightMoveTrigger = "Right";
+    private const string _animatorLeftMoveTrigger = "Left";
+    private const string _animatorIdleMoveTrigger = "Idle";
+
     private bool _isHolding;
     private Vector2 _movement;
     private Tween _tween;
@@ -44,14 +51,19 @@ public class Player : MonoBehaviour
 
     private void Start()
     {
-        _gameInputAction = new GameInputAction();
-        _gameInputAction.Gameplay.Enable();
-        _gameInputAction.Gameplay.Movement.performed += PerformMovement;
-        _gameInputAction.Gameplay.Movement.canceled += CancelMovement;
+        GameInputAction inputActions = CoreGame.Instance.GameInputAction;
+
+        inputActions.Gameplay.Movement.performed += PerformMovement;
+        inputActions.Gameplay.Movement.canceled += CancelMovement;
     }
 
     private void Update()
     {
+        if (!CoreGame.Instance.IsPlaying)
+        {
+            return;
+        }
+
         if (CoreGame.Instance.IsDead)
         {
             return;
@@ -79,15 +91,6 @@ public class Player : MonoBehaviour
             StartPendulum();
         }
     }
-    private void OnEnable()
-    {
-        _gameInputAction?.Gameplay.Enable();
-    }
-
-    private void OnDisable()
-    {
-        _gameInputAction.Gameplay.Disable();
-    }
 
     private void OnTriggerEnter(Collider other)
     {
@@ -98,17 +101,33 @@ public class Player : MonoBehaviour
         }
     }
 
+    public void ResetPosition()
+    {
+        _holder.eulerAngles = Vector3.zero;
+
+        _isPlaying = false;
+        _isDead = false;
+        _tween.Kill();
+    }
+
     private void PerformMovement(InputAction.CallbackContext context)
     {
         ResetPendulum();
 
         _isHolding = true;
         _movement = context.ReadValue<Vector2>();
+
+        // Animation
+        string animationTrigger = _movement.x >= 0? _animatorRightMoveTrigger : _animatorLeftMoveTrigger;
+        _animator.SetTrigger(animationTrigger);
     }
 
     private void CancelMovement(InputAction.CallbackContext context)
     {
         _isHolding = false;
+
+        // Animation
+        _animator.SetTrigger(_animatorIdleMoveTrigger);
     }
 
     private void StartPendulum()
