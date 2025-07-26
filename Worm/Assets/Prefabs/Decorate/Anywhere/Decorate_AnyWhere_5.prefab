@@ -50,7 +50,7 @@ MonoBehaviour:
   - {fileID: 9058849524065803574}
   spawnAnchor: 2
   _speedMultiplier: 1
-  _layer: 1
+  _layer: 0
 --- !u!212 &9058849524065803574
 SpriteRenderer:
   m_ObjectHideFlags: 0
