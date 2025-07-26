@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4681698132219685344}
   - component: {fileID: 3231238145363531648}
   - component: {fileID: 7799505009140778442}
+  - component: {fileID: -1612340817866047356}
   m_Layer: 0
   m_Name: Fish_Heart
   m_TagString: Untagged
@@ -106,3 +107,17 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1.0997636, y: 1.3114865, z: 0.2}
   m_Center: {x: 0.79011834, y: 0.08427918, z: 0}
+--- !u!114 &-1612340817866047356
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1771637812560880329}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 53b165aa410d3cc45b041c19b99b2270, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _minSpeed: 0
+  _maxSpeed: 0
