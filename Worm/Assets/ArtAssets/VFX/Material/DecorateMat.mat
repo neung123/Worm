@@ -72,10 +72,10 @@ Material:
     m_Floats:
     - _DesaturationAmount: 1
     - _EnableExternalAlpha: 0
-    - _LayerBrightness: 0.3
+    - _LayerBrightness: 1
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _Flip: {r: 1, g: 1, b: 1, a: 1}
-    - _LayerTint: {r: 0.22316661, g: 0.38972175, b: 0.5566038, a: 1}
+    - _LayerTint: {r: 1, g: 1, b: 1, a: 1}
     - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
   m_BuildTextureStacks: []
