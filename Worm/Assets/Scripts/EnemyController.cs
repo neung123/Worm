@@ -28,7 +28,7 @@ public class EnemyController : MonoBehaviour
     [SerializeField]
     private List<Enemy> _hardEnemies;
 
-    private Dictionary<string, EnemyPool> _pools = new Dictionary<string, EnemyPool>();
+    private Dictionary<Enemy, EnemyPool> _pools = new Dictionary<Enemy, EnemyPool>();
 
     private float _elapsedSpawnTime;
     private List<Enemy> _currentEnemy;
@@ -85,7 +85,7 @@ public class EnemyController : MonoBehaviour
         Enemy selected = enemyList[index];
         Enemy spawnedEnemy;
 
-        if (_pools.TryGetValue(selected.name, out var pool))
+        if (_pools.TryGetValue(selected, out var pool))
         {
             spawnedEnemy = pool.GetEnemy();
         }
@@ -97,7 +97,7 @@ public class EnemyController : MonoBehaviour
 
             newPool.Init(selected);
 
-            _pools.Add(selected.name, newPool);
+            _pools.Add(selected, newPool);
 
             spawnedEnemy = newPool.GetEnemy();
         }
@@ -107,6 +107,7 @@ public class EnemyController : MonoBehaviour
         bool spawnLeft = Random.value < 0.5f;
 
         spawnedEnemy.StartSwim(GetRandomPosition(spawnLeft), GetRandomPosition(!spawnLeft), spawnLeft);
+        spawnedEnemy.WhenCompletedSwim += OnEnemyCompletedSwim;
     }
 
     private Vector3 GetRandomPosition(bool spawnLeft)
@@ -119,5 +120,17 @@ public class EnemyController : MonoBehaviour
         float y = Random.Range(minPoint.y, maxPoint.y);
 
         return new Vector3(x, y, 0f);
+    }
+
+    private void OnEnemyCompletedSwim(Enemy enemy)
+    {
+        enemy.WhenCompletedSwim -= OnEnemyCompletedSwim;
+
+        enemy.StopSwim();
+
+        if (_pools.TryGetValue(enemy, out var pool))
+        {
+            pool.ReturnEnemy(enemy);
+        }
     }
 }

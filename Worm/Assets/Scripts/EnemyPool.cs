@@ -27,6 +27,7 @@ public class EnemyPool : MonoBehaviour
 
     public void ReturnEnemy(Enemy enemy)
     {
+        enemy.transform.parent = transform;
         enemy.gameObject.SetActive(false);
         _pool.Enqueue(enemy);
     }
