@@ -20,7 +20,7 @@ public class BaitLine : MonoBehaviour
         _baitLine.SetPosition(1, _baitLocation.position);
     }
 
-    private void Update()
+    private void LateUpdate()
     {
         if (_baitLine.positionCount == 2)
         {
