@@ -50,9 +50,9 @@ MonoBehaviour:
   <Player>k__BackingField: {fileID: 3177827090794133508}
   <UIController>k__BackingField: {fileID: 6629564296819406715}
   <EnemyController>k__BackingField: {fileID: 2141798691054763023}
-  _gameplayDuration: 30
-  _mediumStartTime: 10
-  _hardStartTime: 20
+  _gameplayDuration: 45
+  _mediumStartTime: 20
+  _hardStartTime: 30
 --- !u!1001 &2975267524351227325
 PrefabInstance:
   m_ObjectHideFlags: 0
