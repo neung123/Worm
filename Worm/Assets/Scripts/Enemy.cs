@@ -30,7 +30,7 @@ public class Enemy : MonoBehaviour
 
         var x = _isSpawnLeft ? transform.localScale.x : -transform.localScale.x;
         transform.localScale = new Vector3(x, transform.localScale.y, transform.localScale.z);
-        
+
         var duration = UnityEngine.Random.Range(_minSpeedDuration, _maxSpeedDuration);
 
         _tween = transform.DOMove(endPosition, duration).OnComplete(() => OnCompletedSwim());

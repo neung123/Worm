@@ -66,8 +66,12 @@ public class CoreGame : MonoBehaviour
     public void StartGame()
     {
         IsPlaying = true;
+        IsDead = false;
+        
+        _elapsedGameTime = 0;
 
         Player.WhenPlayerDead += OnPlayerDead;
+        Player.ResetPosition();
         GameInputAction.Gameplay.Enable();
     }
 
@@ -109,6 +113,7 @@ public class CoreGame : MonoBehaviour
         IsPlaying = false;
 
         GameInputAction.Gameplay.Disable();
+        EnemyController.ClearAllSpawnedEnemy();
 
         UIController.Lose();
     }

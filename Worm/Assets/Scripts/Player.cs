@@ -93,6 +93,11 @@ public class Player : MonoBehaviour
         }
     }
 
+    public void ResetPosition()
+    {
+        _holder.eulerAngles = Vector3.zero;
+    }
+
     private void PerformMovement(InputAction.CallbackContext context)
     {
         ResetPendulum();
