@@ -186,10 +186,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _holder: {fileID: 219161626}
   _maxRotate: 80
-  _pendulemReduction: 1
-  _pendulemLerp: 0.5
-  _pendulemDuration: 1
   _duration: 0
+  _startDelayDuration: 0.2
+  _pendulemLerpIncrease: 0.05
+  _pendulemLerp: 0.9
+  _pendulemDuration: 1
 --- !u!4 &557320567
 Transform:
   m_ObjectHideFlags: 0
