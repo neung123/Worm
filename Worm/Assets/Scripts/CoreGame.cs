@@ -83,6 +83,11 @@ public class CoreGame : MonoBehaviour
         if (_elapsedGameTime >= _gameplayDuration)
         {
             UIController.Win();
+
+            IsPlaying = false;
+
+            GameInputAction.Gameplay.Disable();
+            EnemyController.ClearAllSpawnedEnemy();
         }
         else
         {
