@@ -1,4 +1,5 @@
 using DG.Tweening;
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -28,15 +29,18 @@ public class Player : MonoBehaviour
     [SerializeField]
     private float _pendulemDuration;
 
-    public GameInputAction _gameInputAction;
+    public Action WhenPlayerDead;
+    public bool IsDead => _isDead;
 
     private const float _lerpThreshold = 0.3f;
 
+    private GameInputAction _gameInputAction;
     private bool _isHolding;
     private Vector2 _movement;
     private Tween _tween;
     private bool _isPlaying;
     private float _localPendulemLerp;
+    private bool _isDead;
 
     private void Start()
     {
@@ -48,6 +52,11 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
+        if (CoreGame.Instance.IsDead)
+        {
+            return;
+        }
+
         if (_isHolding)
         {
             if (_tween != null)
@@ -78,6 +87,15 @@ public class Player : MonoBehaviour
     private void OnDisable()
     {
         _gameInputAction.Gameplay.Disable();
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.TryGetComponent<Enemy>(out var enemy))
+        {
+            _isDead = true;
+            WhenPlayerDead?.Invoke();
+        }
     }
 
     private void PerformMovement(InputAction.CallbackContext context)
