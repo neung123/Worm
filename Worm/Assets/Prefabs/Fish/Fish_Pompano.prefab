@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 520911989558987024}
   - component: {fileID: 5288871546032058779}
+  - component: {fileID: 3502516260802005717}
   m_Layer: 0
   m_Name: Fish_Pompano
   m_TagString: Untagged
@@ -84,3 +85,24 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!65 &3502516260802005717
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8007049095669063223}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1.4486995, y: 1.874502, z: 0.2}
+  m_Center: {x: 1.5506504, y: 0.00000014901161, z: 0}
