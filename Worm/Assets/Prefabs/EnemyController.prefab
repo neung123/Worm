@@ -62,3 +62,6 @@ MonoBehaviour:
   - {fileID: -8202199397025477664, guid: ec21a97055d170a41bfae9b8784756b0, type: 3}
   - {fileID: -5748150053171631237, guid: b422d0368af5606408d4b7fa9771b841, type: 3}
   - {fileID: -8757903315387315774, guid: 353e6e7132dc83b47a0c0bd0587216cc, type: 3}
+  _spawnDelay: 1
+  _spawnVFX: {fileID: 5029623604311493413, guid: 321470a58e8054f478bb4dac2d12d49e, type: 3}
+  _spawnVFXOffset: 5.3

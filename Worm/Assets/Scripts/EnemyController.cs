@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -29,6 +30,15 @@ public class EnemyController : MonoBehaviour
 
     [SerializeField]
     private List<Enemy> _hardEnemies;
+
+    [SerializeField]
+    private float _spawnDelay;
+
+    [SerializeField]
+    private GameObject _spawnVFX;
+
+    [SerializeField]
+    private float _spawnVFXOffset;
 
     private Dictionary<string, EnemyPool> _pools = new Dictionary<string, EnemyPool>();
 
@@ -65,6 +75,8 @@ public class EnemyController : MonoBehaviour
     {
         foreach (Enemy enemy in _currentEnemy)
         {
+            enemy.WhenCompletedSwim -= OnEnemyCompletedSwim;
+
             string name = enemy.name.Replace("(Clone)", "");
             enemy.StopSwim();
 
@@ -121,6 +133,7 @@ public class EnemyController : MonoBehaviour
         else
         {
             var newGameObj = new GameObject(selected.name);
+
             var newPool = newGameObj.AddComponent<EnemyPool>();
             newPool.transform.parent = transform;
 
@@ -132,14 +145,17 @@ public class EnemyController : MonoBehaviour
         }
 
         spawnedEnemy.transform.parent = transform;
+        spawnedEnemy.gameObject.SetActive(false);
 
         _currentEnemy.Add(spawnedEnemy);
 
         // Swim Logic
         bool spawnLeft = Random.value < 0.5f;
 
-        spawnedEnemy.StartSwim(GetRandomPosition(spawnLeft), GetRandomPosition(!spawnLeft), spawnLeft);
-        spawnedEnemy.WhenCompletedSwim += OnEnemyCompletedSwim;
+        Vector3 spawnPosition = GetRandomPosition(spawnLeft);
+        Vector3 endPosition= GetRandomPosition(!spawnLeft);
+
+        StartCoroutine(SpawnRoutine(spawnedEnemy, spawnPosition, endPosition, spawnLeft));
     }
 
     private Vector3 GetRandomPosition(bool spawnLeft)
@@ -167,5 +183,17 @@ public class EnemyController : MonoBehaviour
         }
 
         _currentEnemy.Remove(enemy);
+    }
+
+    private IEnumerator SpawnRoutine(Enemy enemy, Vector3 spawnPosition, Vector3 endPosition, bool spawnLeft)
+    {
+        Vector3 vfxPositon = spawnPosition + (spawnLeft ? Vector3.right : Vector3.left) * _spawnVFXOffset;
+
+        Instantiate(_spawnVFX, vfxPositon, Quaternion.identity);
+
+        yield return new WaitForSeconds(_spawnDelay);
+
+        enemy.StartSwim(spawnPosition, endPosition, spawnLeft);
+        enemy.WhenCompletedSwim += OnEnemyCompletedSwim;
     }
 }
