@@ -25,6 +25,7 @@ public class CoreGame : MonoBehaviour
 
     public static CoreGame Instance;
 
+    public bool IsDead { get; private set; }
     public float GameplayProgress => Mathf.Clamp01(_elapsedGameTime / _gameplayDuration);
 
     private float _elapsedGameTime;
@@ -32,10 +33,18 @@ public class CoreGame : MonoBehaviour
     private void Awake()
     {
         Instance = this;
+
+        Player.WhenPlayerDead += OnPlayerDead;
     }
 
     private void Update()
     {
+        if (IsDead)
+        {
+            UIController.Lose();
+            return;
+        }
+
         ElapsedGameTime();
     }
 
@@ -67,5 +76,10 @@ public class CoreGame : MonoBehaviour
         }
 
         EnemyController.SetEnemyEnum(enemyEnum);
+    }
+
+    private void OnPlayerDead()
+    {
+        IsDead = true;
     }
 }

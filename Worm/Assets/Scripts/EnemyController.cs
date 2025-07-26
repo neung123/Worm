@@ -41,6 +41,11 @@ public class EnemyController : MonoBehaviour
 
     private void Update()
     {
+        if (CoreGame.Instance.IsDead)
+        {
+            return;
+        }
+
         ElapsedSpawnTime();
     }
 
