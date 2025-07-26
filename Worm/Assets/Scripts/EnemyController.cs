@@ -28,7 +28,7 @@ public class EnemyController : MonoBehaviour
     [SerializeField]
     private List<Enemy> _hardEnemies;
 
-    private Dictionary<Enemy, EnemyPool> _pools = new Dictionary<Enemy, EnemyPool>();
+    private Dictionary<string, EnemyPool> _pools = new Dictionary<string, EnemyPool>();
 
     private float _elapsedSpawnTime;
     private List<Enemy> _currentEnemy;
@@ -85,7 +85,7 @@ public class EnemyController : MonoBehaviour
         Enemy selected = enemyList[index];
         Enemy spawnedEnemy;
 
-        if (_pools.TryGetValue(selected, out var pool))
+        if (_pools.TryGetValue(selected.name, out var pool))
         {
             spawnedEnemy = pool.GetEnemy();
         }
@@ -97,10 +97,13 @@ public class EnemyController : MonoBehaviour
 
             newPool.Init(selected);
 
-            _pools.Add(selected, newPool);
+            _pools.Add(selected.name, newPool);
 
             spawnedEnemy = newPool.GetEnemy();
         }
+
+        spawnedEnemy.transform.parent = transform;  
+
         _currentEnemy.Add(spawnedEnemy);
 
         // Swim Logic
@@ -128,7 +131,9 @@ public class EnemyController : MonoBehaviour
 
         enemy.StopSwim();
 
-        if (_pools.TryGetValue(enemy, out var pool))
+        string name = enemy.name.Replace("(Clone)", "");
+
+        if (_pools.TryGetValue(name, out var pool))
         {
             pool.ReturnEnemy(enemy);
         }

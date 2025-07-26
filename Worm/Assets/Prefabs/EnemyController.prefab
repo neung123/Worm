@@ -45,10 +45,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _spawnDelayDuration: 0
-  _minLeftSpawnPoint: {x: -10, y: -6}
-  _maxLeftSpawnPoint: {x: -10, y: 6}
-  _minRightSpawnPoint: {x: 10, y: -6}
-  _maxRightSpawnPoint: {x: 10, y: 6}
+  _minLeftSpawnPoint: {x: -14, y: -6}
+  _maxLeftSpawnPoint: {x: -14, y: 6}
+  _minRightSpawnPoint: {x: 14, y: -6}
+  _maxRightSpawnPoint: {x: 14, y: 6}
   _easyEnemies:
   - {fileID: -4205641336311441855, guid: 633fd4d4bd939e145be91556d6063e0b, type: 3}
   - {fileID: -1612340817866047356, guid: 11bd21accd20dab4ebdc4ca6e8a264a5, type: 3}
