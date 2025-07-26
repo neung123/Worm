@@ -84,8 +84,8 @@ MonoBehaviour:
     spawnCooldownMin: 5
     spawnCooldownMax: 10
   - layer: 2
-    scaleRangeMin: 1
-    scaleRangeMax: 1.2
+    scaleRangeMin: 0.8
+    scaleRangeMax: 1
     sortingLayer: ForegroundDecorate
     spawnCooldownMin: 10
     spawnCooldownMax: 15
@@ -96,3 +96,6 @@ MonoBehaviour:
     weight: 1
   - anchor: 2
     weight: 2
+  seabedPrefab: {fileID: 7928993350909589264, guid: 6905eea0ef2ddd041a8f4e9c0905a565, type: 3}
+  stopSpawnRatio: 0.6
+  seabedSpawnDepthThreshold: 0.85

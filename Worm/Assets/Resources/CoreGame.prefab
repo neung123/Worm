@@ -52,9 +52,9 @@ MonoBehaviour:
   <Player>k__BackingField: {fileID: 3177827090794133508}
   <UIController>k__BackingField: {fileID: 6629564296819406715}
   <EnemyController>k__BackingField: {fileID: 2141798691054763023}
-  _gameplayDuration: 45
+  _gameplayDuration: 60
   _mediumStartTime: 20
-  _hardStartTime: 30
+  _hardStartTime: 40
 --- !u!1 &7691179628904948354
 GameObject:
   m_ObjectHideFlags: 0
