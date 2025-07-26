@@ -144,7 +144,6 @@ public class EnemyController : MonoBehaviour
 
     private Vector3 GetRandomPosition(bool spawnLeft)
     {
-
         Vector2 minPoint = spawnLeft ? _minLeftSpawnPoint : _minRightSpawnPoint;
         Vector2 maxPoint = spawnLeft ? _maxLeftSpawnPoint : _maxRightSpawnPoint;
 
