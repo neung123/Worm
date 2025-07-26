@@ -73,6 +73,8 @@ public class EnemyController : MonoBehaviour
 
     public void ClearAllSpawnedEnemy()
     {
+        StopAllCoroutines();
+
         foreach (Enemy enemy in _currentEnemy)
         {
             enemy.WhenCompletedSwim -= OnEnemyCompletedSwim;
