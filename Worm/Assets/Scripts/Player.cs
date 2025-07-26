@@ -4,6 +4,7 @@ using UnityEngine.InputSystem;
 
 public class Player : MonoBehaviour
 {
+    [Header("Main Game Setup")]
     [SerializeField]
     private Transform _holder;
 
@@ -13,12 +14,28 @@ public class Player : MonoBehaviour
     [SerializeField]
     private float _duration;
 
+    [Header("Pendulum Setup")]
+    [SerializeField]
+    private float _startDelayDuration;
+
+    [SerializeField]
+    private float _pendulemLerpIncrease;
+
+    [SerializeField]
+    private float _pendulemLerp = 0.5f;
+
+    [SerializeField]
+    private float _pendulemDuration;
+
     public GameInputAction _gameInputAction;
+
+    private const float _lerpThreshold = 0.3f;
 
     private bool _isHolding;
     private Vector2 _movement;
-
     private Tween _tween;
+    private bool _isPlaying;
+    private float _localPendulemLerp;
 
     private void Start()
     {
@@ -47,6 +64,10 @@ public class Player : MonoBehaviour
 
             _tween = _holder.DORotate(ToRotation, _duration);
         }
+        else
+        {
+            StartPendulum();
+        }
     }
     private void OnEnable()
     {
@@ -60,6 +81,8 @@ public class Player : MonoBehaviour
 
     private void PerformMovement(InputAction.CallbackContext context)
     {
+        ResetPendulum();
+
         _isHolding = true;
         _movement = context.ReadValue<Vector2>();
     }
@@ -67,6 +90,50 @@ public class Player : MonoBehaviour
     private void CancelMovement(InputAction.CallbackContext context)
     {
         _isHolding = false;
+    }
+
+    private void StartPendulum()
+    {
+        if (_isPlaying) return;
+
+        if (_tween != null)
+        {
+            _tween.Kill();
+        }
+
+        var originalRotation = _holder.eulerAngles;
+        float currentZ = NormalizeAngle(_holder.eulerAngles.z);
+
+        if (Mathf.Abs(currentZ) <= _lerpThreshold)
+        {
+            transform.rotation = Quaternion.identity;
+            ResetPendulum();
+            return;
+        }
+
+        _localPendulemLerp -= _pendulemLerpIncrease;
+
+        var LerpZAngle = Mathf.LerpAngle(currentZ, -currentZ, _localPendulemLerp);
+        var toRotation = new Vector3(originalRotation.x, originalRotation.y, LerpZAngle);
+
+        _tween = _holder.DORotate(toRotation, _pendulemDuration)
+            .SetEase(Ease.InOutSine)
+            .OnComplete(() => CompletedPendulum());
+
+        _isPlaying = true;
+    }
+
+    private void CompletedPendulum()
+    {
+        _isPlaying = false;
+
+        StartPendulum();
+    }
+
+    private void ResetPendulum()
+    {
+        _isPlaying = false;
+        _localPendulemLerp = _pendulemLerp;
     }
 
     private float NormalizeAngle(float angle)
