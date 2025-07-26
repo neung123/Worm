@@ -6,25 +6,31 @@ public class DepthSimulationController : MonoBehaviour
     [SerializeField]
     private List<DepthSimulatable> _simulateObjects;
 
-    [SerializeField]
-    private float _mockedDuration = 10f;
-
-    private float _mockedDepth;
-
-    private void Awake()
+    private void Start()
     {
-        _mockedDepth = 0;
+        CoreGame.Instance.WhenGameStarted += OnGameStarted;
     }
 
     private void Update()
     {
-        _mockedDepth += Time.deltaTime;
-        float normalizedDepth = _mockedDepth / _mockedDuration;
-        normalizedDepth = Mathf.Clamp01(normalizedDepth);
+        if (!CoreGame.Instance.IsPlaying)
+        {
+            return;
+        }
+
+        float normalizedDepth = CoreGame.Instance.GameplayProgress;
 
         foreach (var simulatable in _simulateObjects)
         {
             simulatable.SimulateDepth(Time.deltaTime, normalizedDepth);
+        }
+    }
+
+    private void OnGameStarted()
+    {
+        foreach (var simulatable in _simulateObjects)
+        {
+            simulatable.ResetDepth();
         }
     }
 }

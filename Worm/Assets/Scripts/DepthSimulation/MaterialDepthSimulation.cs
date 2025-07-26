@@ -22,4 +22,11 @@ public class MaterialDepthSimulation : DepthSimulatable
 
         _targetMaterial.SetFloat(_depthValueProperty, normalizeDepth);
     }
+
+    public override void ResetDepth()
+    {
+        base.ResetDepth();
+
+        _targetMaterial.SetFloat(_depthValueProperty, 0f);
+    }
 }

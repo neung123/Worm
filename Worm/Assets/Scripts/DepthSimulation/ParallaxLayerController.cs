@@ -38,24 +38,39 @@ public struct AnchorSpawnWeight
 public class ParallaxLayerController : DepthSimulatable
 {
     [Header("Prefabs to Spawn")]
-    [SerializeField] private List<ParallaxDecoration> prefabList = new();
+    [SerializeField]
+    private List<ParallaxDecoration> prefabList;
 
     [Header("X Spawn Bounds")]
-    [SerializeField] private float leftBoundMin = -10f;
-    [SerializeField] private float leftBoundMax = -10f;
-    [SerializeField] private float rightBoundMin = 10f;
-    [SerializeField] private float rightBoundMax = 10f;
+    [SerializeField] 
+    private float leftBoundMin = -10f;
+
+    [SerializeField] 
+    private float leftBoundMax = -10f;
+
+    [SerializeField] 
+    private float rightBoundMin = 10f;
+
+    [SerializeField] 
+    private float rightBoundMax = 10f;
 
     [Header("Y Scroll")]
-    [SerializeField] private float baseScrollSpeed = 1f;
-    [SerializeField] private float bottomY = -5f;
-    [SerializeField] private float topY = 10f;
+    [SerializeField] 
+    private float baseScrollSpeed = 1f;
+
+    [SerializeField] 
+    private float bottomY = -5f;
+
+    [SerializeField] 
+    private float topY = 10f;
 
     [Header("Layer Settings")]
-    [SerializeField] private List<LayerSettings> layerSettingsList;
+    [SerializeField] 
+    private List<LayerSettings> layerSettingsList;
 
     [Header("Anchor Spawn Weights")]
-    [SerializeField] private List<AnchorSpawnWeight> anchorWeights;
+    [SerializeField] 
+    private List<AnchorSpawnWeight> anchorWeights;
 
     private class SpawnTimer
     {
@@ -79,7 +94,7 @@ public class ParallaxLayerController : DepthSimulatable
         }
     }
 
-        private readonly List<ParallaxDecoration> _activeObjects = new();
+    private readonly List<ParallaxDecoration> _activeObjects = new List<ParallaxDecoration>();
     private Dictionary<VisualLayer, LayerSettings> _layerSettingMap;
     private Dictionary<SpawnAnchor, float> _anchorWeightMap;
     private Dictionary<VisualLayer, SpawnTimer> _layerSpawnTimers;
@@ -131,9 +146,21 @@ public class ParallaxLayerController : DepthSimulatable
             if (decoration.transform.position.y > topY)
             {
                 _activeObjects.RemoveAt(i);
-                Destroy(decoration);
+                Destroy(decoration.gameObject);
             }
         }
+    }
+
+    public override void ResetDepth()
+    {
+        base.ResetDepth();
+
+        foreach (var decoration in _activeObjects)
+        {
+            Destroy(decoration.gameObject);
+        }
+
+        _activeObjects.Clear();
     }
 
     private float GetRandomCooldown(LayerSettings layer)

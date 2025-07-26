@@ -7,4 +7,8 @@ public class DepthSimulatable: MonoBehaviour
     public virtual void SimulateDepth(float deltaTime, float normalizeDepth)
     {
     }
+
+    public virtual void ResetDepth()
+    {
+    }
 }
