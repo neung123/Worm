@@ -120,10 +120,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53b165aa410d3cc45b041c19b99b2270, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _minSpeedDuration: 3
-  _maxSpeedDuration: 5
+  _minSpeedDuration: 8
+  _maxSpeedDuration: 9
   _spriteRenderer: {fileID: 1067082739963340303}
-  IsSwiming: 0
 --- !u!54 &6113882525779852577
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -149,5 +148,5 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 112
   m_CollisionDetection: 0

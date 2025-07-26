@@ -63,11 +63,16 @@ public class EnemyController : MonoBehaviour
     {
         foreach (Enemy enemy in _currentEnemy)
         {
+            string name = enemy.name.Replace("(Clone)", "");
+            enemy.StopSwim();
+
             if (_pools.TryGetValue(name, out var pool))
             {
                 pool.ReturnEnemy(enemy);
             }
         }
+
+        _currentEnemy.Clear();
     }
 
     private void ElapsedSpawnTime()
@@ -158,5 +163,7 @@ public class EnemyController : MonoBehaviour
         {
             pool.ReturnEnemy(enemy);
         }
+
+        _currentEnemy.Remove(enemy);
     }
 }

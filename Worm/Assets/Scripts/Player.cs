@@ -96,6 +96,10 @@ public class Player : MonoBehaviour
     public void ResetPosition()
     {
         _holder.eulerAngles = Vector3.zero;
+
+        _isPlaying = false;
+        _isDead = false;
+        _tween.Kill();
     }
 
     private void PerformMovement(InputAction.CallbackContext context)
