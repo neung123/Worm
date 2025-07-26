@@ -1,25 +1,32 @@
+using System.Collections.Generic;
 using UnityEngine;
 
-public class ParallaxDecorate : DepthSimulatable
+public class ParallaxDecoration : MonoBehaviour
 {
-    [Tooltip("Amount of parallax movement relative to normalized depth (0–1)")]
-    public float parallaxFactor = 1f;
+    [SerializeField]
+    private List<SpriteRenderer> decorationPrefabs = new();
 
-    [Tooltip("Max vertical scroll range for this layer")]
-    public float maxOffset = 10f;
+    [Tooltip("Used by spawner to decide where to place object horizontally")]
+    [SerializeField] 
+    private SpawnAnchor spawnAnchor = SpawnAnchor.Anywhere;
 
-    private Vector3 _initialPosition;
+    [SerializeField]
+    private float _speedMultiplier = 1f;
+    public float SpeedMultiplier => _speedMultiplier;
 
-    private void Start()
+    [SerializeField] 
+    private VisualLayer _layer = VisualLayer.Midground;
+    public VisualLayer Layer => _layer;
+
+    public SpawnAnchor Anchor => spawnAnchor;
+
+    public void Setup(float scale, string sortingLayer)
     {
-        _initialPosition = transform.position;
-    }
+        transform.localScale = Vector3.one * scale;
 
-    public override void SimulateDepth(float deltaTime, float normalizeDepth)
-    {
-        base.SimulateDepth(deltaTime, normalizeDepth);
-
-        float offsetY = normalizeDepth * maxOffset * parallaxFactor;
-        transform.position = _initialPosition + Vector3.up * offsetY;
+        foreach (var sr in decorationPrefabs)
+        {
+            sr.sortingLayerName = sortingLayer;
+        }
     }
 }

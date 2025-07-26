@@ -59,6 +59,6 @@ TagManager:
   - name: ForegroundVFX
     uniqueID: 2013137275
     locked: 0
-  - name: ForeGroundDecorate
+  - name: ForegroundDecorate
     uniqueID: 671206765
     locked: 0
