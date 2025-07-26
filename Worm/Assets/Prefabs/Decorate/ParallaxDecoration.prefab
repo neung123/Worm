@@ -45,23 +45,30 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   prefabList:
-  - {fileID: 7928993350909589264, guid: 27390572feb967a4b922f51f82fac564, type: 3}
-  - {fileID: 3844997284254057707, guid: 8c938774e52fb274783728852bf55570, type: 3}
-  - {fileID: 5712144802079973939, guid: 1f76936b5ec13a24a937a3d2b3a7230c, type: 3}
-  - {fileID: 7928993350909589264, guid: a4ec056a998b7544db25019316eb06cb, type: 3}
-  - {fileID: 6437350999784239108, guid: 551a170ac3193d6478a0e74478147eb8, type: 3}
   - {fileID: -7394719340784620688, guid: 9b0149d679d2dd943b3590323af54fbc, type: 3}
   - {fileID: 4318772877357765025, guid: 531e8b5023cfdb144a90e04c49e883f7, type: 3}
   - {fileID: 3648478247006112022, guid: 3f7c6b3be982c434ca1c7bd644ac378d, type: 3}
   - {fileID: 3746062504509110472, guid: add9310e1aebab04283e783ad3c18397, type: 3}
   - {fileID: 6372393905766467121, guid: 37a4b80a0191da84fad386d0e24e20e6, type: 3}
   - {fileID: 7656211567727594815, guid: 3fb9ade0a44015b49802d61479210923, type: 3}
+  - {fileID: 3844997284254057707, guid: 8c938774e52fb274783728852bf55570, type: 3}
+  - {fileID: 6437350999784239108, guid: 551a170ac3193d6478a0e74478147eb8, type: 3}
+  - {fileID: 4963104882178975851, guid: 8055a0ae0c30b044fad3c9a4ea88a284, type: 3}
+  - {fileID: 7458329540847643446, guid: 507a188d94384e840a4beb0c3336bc0f, type: 3}
+  - {fileID: 8904619206004030385, guid: ba4f9a7e2cb89654da6cb0e450315069, type: 3}
+  - {fileID: 8904619206004030385, guid: dd8bb8ebb292f8e49b1e0a33c1dc85fa, type: 3}
+  - {fileID: 3681145942455401822, guid: 52bf90f99aac66540a26bb8e329508c5, type: 3}
+  - {fileID: 7928993350909589264, guid: 27390572feb967a4b922f51f82fac564, type: 3}
+  - {fileID: 5712144802079973939, guid: 1f76936b5ec13a24a937a3d2b3a7230c, type: 3}
+  - {fileID: 7928993350909589264, guid: a4ec056a998b7544db25019316eb06cb, type: 3}
+  - {fileID: 1785056214825759888, guid: 9591a4eaf57eee94aa684c7c6227875a, type: 3}
+  - {fileID: 7928993350909589264, guid: 19999f3f78520844c92764a611c56d22, type: 3}
   leftBoundMin: -10
   leftBoundMax: -10
   rightBoundMin: 10
   rightBoundMax: 10
   baseScrollSpeed: 1
-  bottomY: -5
+  bottomY: -10
   topY: 20
   layerSettingsList:
   - layer: 0
@@ -74,8 +81,8 @@ MonoBehaviour:
     scaleRangeMin: 0.4
     scaleRangeMax: 0.6
     sortingLayer: MidgroundDecorate
-    spawnCooldownMin: 1
-    spawnCooldownMax: 6
+    spawnCooldownMin: 5
+    spawnCooldownMax: 10
   - layer: 2
     scaleRangeMin: 1
     scaleRangeMax: 1.2
