@@ -14,6 +14,7 @@ public class Player : MonoBehaviour
     [SerializeField]
     private float _duration;
 
+    // TODO: Implement start delay
     [Header("Pendulum Setup")]
     [SerializeField]
     private float _startDelayDuration;
