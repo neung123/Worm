@@ -8,7 +8,16 @@ public class EnemyController : MonoBehaviour
     private int _spawnDelayDuration;
 
     [SerializeField]
-    private Vector2 _MaxSpawnPoint;
+    private Vector2 _minLeftSpawnPoint;
+
+    [SerializeField]
+    private Vector2 _maxLeftSpawnPoint;
+
+    [SerializeField]
+    private Vector2 _minRightSpawnPoint;
+
+    [SerializeField]
+    private Vector2 _maxRightSpawnPoint;
 
     [SerializeField]
     private List<Enemy> _easyEnemies;
@@ -93,13 +102,40 @@ public class EnemyController : MonoBehaviour
             spawnedEnemy = newPool.GetEnemy();
         }
 
-        spawnedEnemy.transform.position = GetSpawnPosition();
+        spawnedEnemy.transform.parent = transform;  
 
         _currentEnemy.Add(spawnedEnemy);
+
+        // Swim Logic
+        bool spawnLeft = Random.value < 0.5f;
+
+        spawnedEnemy.StartSwim(GetRandomPosition(spawnLeft), GetRandomPosition(!spawnLeft), spawnLeft);
+        spawnedEnemy.WhenCompletedSwim += OnEnemyCompletedSwim;
     }
 
-    private Vector3 GetSpawnPosition()
+    private Vector3 GetRandomPosition(bool spawnLeft)
     {
-        return new Vector3(Random.Range(-5f, 5f), 0, Random.Range(-5f, 5f));
+
+        Vector2 minPoint = spawnLeft ? _minLeftSpawnPoint : _minRightSpawnPoint;
+        Vector2 maxPoint = spawnLeft ? _maxLeftSpawnPoint : _maxRightSpawnPoint;
+
+        float x = Random.Range(minPoint.x, maxPoint.x);
+        float y = Random.Range(minPoint.y, maxPoint.y);
+
+        return new Vector3(x, y, 0f);
+    }
+
+    private void OnEnemyCompletedSwim(Enemy enemy)
+    {
+        enemy.WhenCompletedSwim -= OnEnemyCompletedSwim;
+
+        enemy.StopSwim();
+
+        string name = enemy.name.Replace("(Clone)", "");
+
+        if (_pools.TryGetValue(name, out var pool))
+        {
+            pool.ReturnEnemy(enemy);
+        }
     }
 }

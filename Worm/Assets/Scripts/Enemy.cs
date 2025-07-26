@@ -1,23 +1,49 @@
-using System.Net.NetworkInformation;
+using DG.Tweening;
+using System;
 using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
     [SerializeField]
-    private float _minSpeed;
+    private float _minSpeedDuration;
 
     [SerializeField]
-    private float _maxSpeed;
+    private float _maxSpeedDuration;
 
-    private float _timer;
+    [SerializeField]
+    private SpriteRenderer _spriteRenderer;
 
-    private void Update()
+    public Action<Enemy> WhenCompletedSwim;
+    public bool IsSwiming;
+
+    private bool _isSpawnLeft;
+    private Tween _tween;
+
+    public void StartSwim(Vector3 startPosition, Vector3 endPosition, bool isSpawnLeft)
     {
-        // TODO: make it actually swim
+        IsSwiming = true;
+        gameObject.SetActive(true);
+
+        transform.position = startPosition;
+
+        _isSpawnLeft = isSpawnLeft;
+        _spriteRenderer.flipX = !_isSpawnLeft;
+
+        var duration = UnityEngine.Random.Range(_minSpeedDuration, _maxSpeedDuration);
+
+        _tween = transform.DOMove(endPosition, duration).OnComplete(() => OnCompletedSwim());
     }
 
-    public void StartSwim(Vector3 startPosition)
+    public void StopSwim()
     {
+        IsSwiming = false;
+        gameObject.SetActive(false);
+        _tween.Kill();
+    }
 
+    private void OnCompletedSwim()
+    {
+        IsSwiming = false;
+        WhenCompletedSwim?.Invoke(this);
     }
 }
