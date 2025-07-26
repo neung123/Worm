@@ -42,35 +42,45 @@ public class ParallaxLayerController : DepthSimulatable
     private List<ParallaxDecoration> prefabList;
 
     [Header("X Spawn Bounds")]
-    [SerializeField] 
+    [SerializeField]
     private float leftBoundMin = -10f;
 
-    [SerializeField] 
+    [SerializeField]
     private float leftBoundMax = -10f;
 
-    [SerializeField] 
+    [SerializeField]
     private float rightBoundMin = 10f;
 
-    [SerializeField] 
+    [SerializeField]
     private float rightBoundMax = 10f;
 
     [Header("Y Scroll")]
-    [SerializeField] 
+    [SerializeField]
     private float baseScrollSpeed = 1f;
 
-    [SerializeField] 
+    [SerializeField]
     private float bottomY = -5f;
 
-    [SerializeField] 
+    [SerializeField]
     private float topY = 10f;
 
     [Header("Layer Settings")]
-    [SerializeField] 
+    [SerializeField]
     private List<LayerSettings> layerSettingsList;
 
     [Header("Anchor Spawn Weights")]
-    [SerializeField] 
+    [SerializeField]
     private List<AnchorSpawnWeight> anchorWeights;
+
+    [Header("Seabed Settings")]
+    [SerializeField]
+    private ParallaxDecoration seabedPrefab;
+
+    [SerializeField, Range(0f, 1f)]
+    private float stopSpawnRatio = 0.8f;
+
+    [SerializeField, Range(0f, 1f)]
+    private float seabedSpawnDepthThreshold = 0.9f;
 
     private class SpawnTimer
     {
@@ -99,6 +109,8 @@ public class ParallaxLayerController : DepthSimulatable
     private Dictionary<SpawnAnchor, float> _anchorWeightMap;
     private Dictionary<VisualLayer, SpawnTimer> _layerSpawnTimers;
 
+    private bool _seabedSpawned = false;
+
     private void Awake()
     {
         _layerSettingMap = new();
@@ -122,31 +134,40 @@ public class ParallaxLayerController : DepthSimulatable
     {
         base.SimulateDepth(deltaTime, normalizeDepth);
 
-        foreach (var layer in _layerSpawnTimers.Keys)
+        if (normalizeDepth >= seabedSpawnDepthThreshold)
         {
-            _layerSpawnTimers[layer].Update(deltaTime);
-
-            if (_layerSpawnTimers[layer].Cooldown <= 0f)
+            if (!_seabedSpawned)
             {
-                SpawnDecorationForLayer(layer);
-                _layerSpawnTimers[layer].SetCooldown(GetRandomCooldown(_layerSettingMap[layer]));
+                SpawnSeabed();
+                _seabedSpawned = true;
             }
         }
 
+        if (normalizeDepth < stopSpawnRatio)
+        {
+            foreach (var layer in _layerSpawnTimers.Keys)
+            {
+                _layerSpawnTimers[layer].Update(deltaTime);
+
+                if (_layerSpawnTimers[layer].Cooldown <= 0f)
+                {
+                    SpawnDecorationForLayer(layer);
+                    _layerSpawnTimers[layer].SetCooldown(GetRandomCooldown(_layerSettingMap[layer]));
+                }
+            }
+        }
+
+
         for (int i = _activeObjects.Count - 1; i >= 0; i--)
         {
-            ParallaxDecoration decoration = _activeObjects[i];
+            ParallaxDecoration deco = _activeObjects[i];
+            float speed = baseScrollSpeed * deco.SpeedMultiplier * deco.transform.localScale.x;
+            deco.transform.position += Vector3.up * speed * deltaTime;
 
-            float speed = baseScrollSpeed;
-            speed *= decoration.SpeedMultiplier;
-            speed *= decoration.transform.localScale.x;
-
-            decoration.transform.position += Vector3.up * speed * deltaTime;
-
-            if (decoration.transform.position.y > topY)
+            if (deco.transform.position.y > topY)
             {
                 _activeObjects.RemoveAt(i);
-                Destroy(decoration.gameObject);
+                Destroy(deco.gameObject);
             }
         }
     }
@@ -237,5 +258,20 @@ public class ParallaxLayerController : DepthSimulatable
 
         instance.Setup(scale, layerConfig.sortingLayer);
         _activeObjects.Add(instance);
+    }
+
+    private void SpawnSeabed()
+    {
+        if (seabedPrefab == null)
+        {
+            Debug.LogWarning("[ParallaxLayerController] Seabed prefab not assigned.");
+            return;
+        }
+
+        Debug.Log("[ParallaxLayerController] Spawning seabed...");
+        Vector3 spawnPos = new Vector3(0f, bottomY, 0f);
+
+        var ground = Instantiate(seabedPrefab, spawnPos, Quaternion.identity, transform);
+        _activeObjects.Add(ground);
     }
 }
