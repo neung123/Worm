@@ -73,6 +73,7 @@ public class CoreGame : MonoBehaviour
         Player.WhenPlayerDead += OnPlayerDead;
         Player.ResetPosition();
         GameInputAction.Gameplay.Enable();
+        EnemyController.ClearAllSpawnedEnemy();
     }
 
     private void ElapsedGameTime()
