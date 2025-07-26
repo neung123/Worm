@@ -12,7 +12,7 @@ public class Player : MonoBehaviour
     private int _maxRotate;
 
     [SerializeField]
-    private float _duration;
+    private float _tweenDuration;
 
     // TODO: Implement start delay
     [Header("Pendulum Setup")]
@@ -63,7 +63,7 @@ public class Player : MonoBehaviour
                 return;
             }
 
-            _tween = _holder.DORotate(ToRotation, _duration);
+            _tween = _holder.DORotate(ToRotation, _tweenDuration);
         }
         else
         {
