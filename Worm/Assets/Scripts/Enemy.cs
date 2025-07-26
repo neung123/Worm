@@ -1,23 +1,29 @@
-using System.Net.NetworkInformation;
+using DG.Tweening;
 using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
     [SerializeField]
-    private float _minSpeed;
+    private float _minSpeedDuration;
 
     [SerializeField]
-    private float _maxSpeed;
+    private float _maxSpeedDuration;
 
-    private float _timer;
+    [SerializeField]
+    private SpriteRenderer _spriteRenderer;
 
-    private void Update()
+    private bool _isSpawnLeft;
+    private Tween _tween;
+
+    public void StartSwim(Vector3 startPosition, Vector3 endPosition, bool isSpawnLeft)
     {
-        // TODO: make it actually swim
-    }
+        transform.position = startPosition;
 
-    public void StartSwim(Vector3 startPosition)
-    {
+        _isSpawnLeft = isSpawnLeft;
+        _spriteRenderer.flipX = !_isSpawnLeft;
 
+        var duration = Random.Range(_minSpeedDuration, _maxSpeedDuration);
+
+        _tween = transform.DOMove(endPosition, duration);
     }
 }
