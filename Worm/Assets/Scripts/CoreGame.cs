@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class CoreGame : MonoBehaviour
@@ -28,6 +29,9 @@ public class CoreGame : MonoBehaviour
     public bool IsPlaying { get; private set; }
     public bool IsDead { get; private set; }
     public float GameplayProgress => Mathf.Clamp01(_elapsedGameTime / _gameplayDuration);
+
+    public event Action WhenGameStarted;
+
     public GameInputAction GameInputAction;
 
     private float _elapsedGameTime;
@@ -74,6 +78,7 @@ public class CoreGame : MonoBehaviour
         Player.ResetPosition();
         GameInputAction.Gameplay.Enable();
         EnemyController.ClearAllSpawnedEnemy();
+        WhenGameStarted?.Invoke();
     }
 
     private void ElapsedGameTime()
