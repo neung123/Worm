@@ -153,6 +153,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _holder: {fileID: 1742872527912911947}
+  _animator: {fileID: 3313784812023189136}
   _maxRotate: 80
   _tweenDuration: 0.01
   _startDelayDuration: 0.2
@@ -359,6 +360,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b0f2af545fedba3429386c74726922d0, type: 3}
+--- !u!95 &3313784812023189136 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 8887741794868117969, guid: b0f2af545fedba3429386c74726922d0, type: 3}
+  m_PrefabInstance: {fileID: 6245216871922782017}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &5639033492138241603 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1795432933366292738, guid: b0f2af545fedba3429386c74726922d0, type: 3}

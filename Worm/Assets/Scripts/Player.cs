@@ -10,6 +10,9 @@ public class Player : MonoBehaviour
     private Transform _holder;
 
     [SerializeField]
+    private Animator _animator;
+
+    [SerializeField]
     private int _maxRotate;
 
     [SerializeField]
@@ -33,6 +36,11 @@ public class Player : MonoBehaviour
     public bool IsDead => _isDead;
 
     private const float _lerpThreshold = 0.3f;
+
+    // Animation triggers
+    private const string _animatorRightMoveTrigger = "Right";
+    private const string _animatorLeftMoveTrigger = "Left";
+    private const string _animatorIdleMoveTrigger = "Idle";
 
     private bool _isHolding;
     private Vector2 _movement;
@@ -108,11 +116,18 @@ public class Player : MonoBehaviour
 
         _isHolding = true;
         _movement = context.ReadValue<Vector2>();
+
+        // Animation
+        string animationTrigger = _movement.x >= 0? _animatorRightMoveTrigger : _animatorLeftMoveTrigger;
+        _animator.SetTrigger(animationTrigger);
     }
 
     private void CancelMovement(InputAction.CallbackContext context)
     {
         _isHolding = false;
+
+        // Animation
+        _animator.SetTrigger(_animatorIdleMoveTrigger);
     }
 
     private void StartPendulum()
