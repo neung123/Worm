@@ -49,7 +49,7 @@ MonoBehaviour:
   decorationPrefabs:
   - {fileID: 5055477607124428425}
   spawnAnchor: 2
-  _speedMultiplier: 1
+  _speedMultiplier: 3
   _layer: 1
 --- !u!212 &5055477607124428425
 SpriteRenderer:

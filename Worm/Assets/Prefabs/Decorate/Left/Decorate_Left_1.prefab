@@ -62,7 +62,7 @@ MonoBehaviour:
   - {fileID: 7658676266395559693}
   - {fileID: 5909281735755349267}
   spawnAnchor: 0
-  _speedMultiplier: 2.5
+  _speedMultiplier: 3
   _layer: 0
 --- !u!1001 &241711970269264778
 PrefabInstance:
