@@ -160,7 +160,7 @@ MonoBehaviour:
   _startDelayDuration: 0.1
   _pendulemLerpIncrease: 0.2
   _pendulemLerp: 0.9
-  _pendulemDuration: 30
+  _pendulemSpeedMultiplier: 1.2
 --- !u!54 &6206731422975881359
 Rigidbody:
   m_ObjectHideFlags: 0
