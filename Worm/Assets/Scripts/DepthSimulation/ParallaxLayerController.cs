@@ -24,6 +24,8 @@ public struct LayerSettings
     public float scaleRangeMin;
     public float scaleRangeMax;
     public string sortingLayer;
+    public float startSpawnCooldownMin;
+    public float startSpawnCooldownMax;
     public float spawnCooldownMin;
     public float spawnCooldownMax;
 }
@@ -121,7 +123,7 @@ public class ParallaxLayerController : DepthSimulatable
         {
             _layerSettingMap[config.layer] = config;
 
-            _layerSpawnTimers[config.layer] = new SpawnTimer(config.layer, GetRandomCooldown(config));
+            _layerSpawnTimers[config.layer] = new SpawnTimer(config.layer, GetRandomStartCooldown(config));
         }
 
         foreach (var anchor in anchorWeights)
@@ -183,6 +185,12 @@ public class ParallaxLayerController : DepthSimulatable
 
         _activeObjects.Clear();
     }
+
+    private float GetRandomStartCooldown(LayerSettings layer)
+    {
+        return Random.Range(layer.startSpawnCooldownMin, layer.startSpawnCooldownMax);
+    }
+
 
     private float GetRandomCooldown(LayerSettings layer)
     {

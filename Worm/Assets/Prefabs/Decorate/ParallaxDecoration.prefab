@@ -68,25 +68,31 @@ MonoBehaviour:
   rightBoundMin: 10
   rightBoundMax: 10
   baseScrollSpeed: 1
-  bottomY: -10
+  bottomY: -7
   topY: 20
   layerSettingsList:
   - layer: 0
     scaleRangeMin: 0.2
     scaleRangeMax: 0.3
     sortingLayer: BackgroundDecorate
+    startSpawnCooldownMin: 0
+    startSpawnCooldownMax: 1
     spawnCooldownMin: 2
     spawnCooldownMax: 6
   - layer: 1
     scaleRangeMin: 0.4
     scaleRangeMax: 0.6
     sortingLayer: MidgroundDecorate
+    startSpawnCooldownMin: 0
+    startSpawnCooldownMax: 2
     spawnCooldownMin: 5
     spawnCooldownMax: 10
   - layer: 2
     scaleRangeMin: 0.8
     scaleRangeMax: 1
     sortingLayer: ForegroundDecorate
+    startSpawnCooldownMin: 5
+    startSpawnCooldownMax: 10
     spawnCooldownMin: 10
     spawnCooldownMax: 15
   anchorWeights:
@@ -98,4 +104,4 @@ MonoBehaviour:
     weight: 2
   seabedPrefab: {fileID: 7928993350909589264, guid: 6905eea0ef2ddd041a8f4e9c0905a565, type: 3}
   stopSpawnRatio: 0.6
-  seabedSpawnDepthThreshold: 0.85
+  seabedSpawnDepthThreshold: 0.9

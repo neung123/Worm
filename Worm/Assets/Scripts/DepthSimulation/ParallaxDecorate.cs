@@ -36,12 +36,12 @@ public class ParallaxDecoration : MonoBehaviour
             if (_layer == VisualLayer.Background)
             {
                 props.SetColor("_LayerTint", new Color(0.7f, 0.8f, 1f)); // soft blue
-                props.SetFloat("_LayerBrightness", 0.6f);
+                props.SetFloat("_LayerBrightness", 0.3f);
             }
             else if (_layer == VisualLayer.Midground)
             {
                 props.SetColor("_LayerTint", new Color(0.7f, 0.8f, 1f));
-                props.SetFloat("_LayerBrightness", 0.8f);
+                props.SetFloat("_LayerBrightness", 0.6f);
             }
             else if (_layer == VisualLayer.Foreground)
             {
