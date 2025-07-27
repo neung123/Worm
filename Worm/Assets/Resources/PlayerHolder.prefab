@@ -158,7 +158,7 @@ MonoBehaviour:
   _rotationAcceleration: 200
   _maxRotationSpeed: 100
   _startDelayDuration: 0.1
-  _pendulemLerpIncrease: 0.2
+  _pendulemLerpIncrease: 0.1
   _pendulemLerp: 0.9
   _pendulemSpeedMultiplier: 1.2
 --- !u!54 &6206731422975881359
